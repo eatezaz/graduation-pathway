@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f4c5c">
+<title>مسار التخرج — مستشار التوجيه وتقييم الجاهزية | Graduation Pathway</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f4c5c'/%3E%3Cpath d='M32 12 L40 32 L32 28 L24 32 Z' fill='%23e36414'/%3E%3Cpath d='M32 52 L40 32 L32 36 L24 32 Z' fill='%23ffffff'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23ffffff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --primary:#0f4c5c; --primary-light:#156a7a; --accent:#e36414;
+  --bg:#eef1f3; --card:#fff; --line:#dde3e7;
+  --text:#23313a; --muted:#6b7d88;
+  --good:#2e7d32; --mid:#b8860b; --bad:#c62828;
+  --wa:#1faa53;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding-bottom:36px}
+
+header{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;padding:20px 20px 30px;position:relative}
+.top-bar{max-width:1120px;margin:0 auto 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.ver-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:700}
+.lang-switch{display:inline-flex;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.32);border-radius:20px;padding:3px;gap:2px}
+.lang-btn{border:none;background:transparent;color:#fff;padding:4px 12px;border-radius:16px;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .15s}
+.lang-btn.active{background:#fff;color:var(--primary)}
+
+.brand{display:flex;align-items:center;gap:18px;justify-content:center;flex-wrap:wrap;max-width:1120px;margin:0 auto}
+.brand h1{font-size:1.68rem;letter-spacing:.3px}
+.brand .en{font-size:.66rem;letter-spacing:4px;opacity:.7;margin:2px 0 5px}
+.brand .tag{font-size:.88rem;opacity:.92}
+
+/* شريط التنقل بين الأدوات الثلاث */
+.tabs-wrap{max-width:1120px;margin:-18px auto 16px;padding:0 16px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--card);padding:6px;border-radius:14px;border:1px solid var(--line);box-shadow:0 4px 14px rgba(15,76,92,.09)}
+.tab-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 12px;border:none;border-radius:10px;background:transparent;color:var(--muted);font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.tab-btn:hover{color:var(--primary);background:#f4f7f9}
+.tab-btn.active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(15,76,92,.25)}
+
+.container{max-width:1120px;margin:0 auto;padding:0 16px}
+.panel{display:none}
+.panel.active{display:block}
+
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+.layout main{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(16,42,67,.06)}
+.card h2{font-size:1.02rem;color:var(--primary);border-inline-start:4px solid var(--accent);padding-inline-start:10px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field label{font-size:.85rem;color:var(--muted);display:block;margin-bottom:4px;font-weight:600}
+.field input[type=text],.field textarea{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:.9rem;background:#fbfcfd;color:var(--text)}
+.field textarea{min-height:86px;resize:vertical}
+
+/* شرائح التقييم */
+.crit{padding:13px 0;border-bottom:1px dashed var(--line)}
+.crit:last-child{border-bottom:none}
+.crit-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#edf2f4;color:var(--primary);border-radius:50%;font-size:.78rem;font-weight:700;margin-inline-end:6px}
+.crit-head .t{font-weight:700;font-size:.94rem}
+.val{font-weight:800;font-size:.9rem;min-width:46px;text-align:end}
+.val.good{color:var(--good)} .val.mid{color:var(--mid)} .val.bad{color:var(--bad)}
+.desc{font-size:.84rem;color:var(--muted);margin:4px 0 6px}
+input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}
+.anchor{font-size:.8rem;margin-top:4px;font-weight:600}
+.anchor.good{color:var(--good)} .anchor.mid{color:var(--mid)} .anchor.bad{color:var(--bad)}
+
+/* بطاقات التوجيه */
+.q-group{margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.q-group:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.q-title{font-weight:700;font-size:.92rem;margin-bottom:8px;color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 13px;border-radius:20px;border:1px solid var(--line);background:#f8fafb;color:var(--text);font:inherit;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--primary)}
+.chip.selected{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.track-card{background:#f7fafb;border:1px solid var(--line);border-inline-start:4px solid var(--accent);border-radius:10px;padding:13px 15px;margin-bottom:10px}
+.track-card h3{font-size:.95rem;color:var(--primary);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.track-card .match{font-size:.75rem;background:#e6f4ea;color:#1b5e20;padding:2px 8px;border-radius:12px;white-space:nowrap}
+.track-card p{font-size:.84rem;color:var(--muted);margin-bottom:6px}
+.track-card .ex{font-size:.82rem;background:#fff;padding:7px 10px;border-radius:6px;border:1px solid #e6ecee;color:var(--text)}
+
+/* لوحة النتائج */
+.results{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
+.score-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.score-big{font-size:2.5rem;font-weight:800;line-height:1.1;color:var(--primary)}
+.score-big small{font-size:1rem;color:var(--muted);font-weight:600}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:.76rem;padding:3px 9px;border-radius:20px;background:#f1f4f6;color:var(--muted)}
+.pill b{font-weight:800}
+.pill.g{background:#e6f4ea;color:#1b5e20}
+.pill.m{background:#fdf3df;color:#8a6000}
+.pill.b{background:#fdecea;color:#8e1f19}
+.verdict{margin-top:10px;padding:10px 12px;border-radius:8px;font-weight:700;text-align:center;font-size:.92rem}
+.verdict.good{background:#e6f4ea;color:#1b5e20}
+.verdict.mid{background:#fff3e0;color:#8a5000}
+.verdict.warn{background:#fff8e1;color:#7a6000}
+.verdict.bad{background:#fdecea;color:#8e1f19}
+.flag{margin-top:8px;padding:9px 12px;border-radius:8px;background:#fdecea;color:#8e1f19;font-size:.83rem;font-weight:600}
+.verdict-msg{font-size:.84rem;color:var(--muted);text-align:center;margin-top:6px}
+canvas{width:100%;max-width:340px;aspect-ratio:1;display:block;margin:10px auto 0}
+.tips-title{font-size:.88rem;font-weight:700;margin:13px 0 7px;color:var(--primary)}
+.tip{background:#fdf3ec;border-inline-start:3px solid var(--accent);padding:8px 10px;border-radius:6px;font-size:.83rem;margin-bottom:7px}
+.tip b{color:#9a4a10}
+.tip.ok{background:#e9f5ec;border-color:#4caf50}
+
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font:inherit;font-size:.84rem;font-weight:600;color:var(--primary);text-decoration:none;transition:all .15s}
+.btn:hover{border-color:var(--primary);background:#f7fafb}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{background:#cf5810;border-color:#cf5810}
+.btn.wa{background:var(--wa);color:#fff;border-color:var(--wa)}
+.btn.wa:hover{background:#199447;border-color:#199447}
+.note{font-size:.77rem;color:var(--muted);margin-top:10px;text-align:center}
+
+.consult-flex{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.consult-info{flex:1;min-width:260px}
+.consult-info p{font-size:.86rem;color:var(--muted);margin-bottom:10px}
+.sug-box{background:#f8fafb;border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:8px}
+.sug-box .actions{margin-top:8px}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#23313a;color:#fff;padding:10px 18px;border-radius:8px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .3s;z-index:99}
+.toast.show{opacity:1}
+
+footer{max-width:1120px;margin:14px auto 26px;padding:20px 16px;text-align:center;color:var(--muted);font-size:.88rem}
+footer .fname{font-size:1.05rem;margin:6px 0 2px}
+footer .fname b{color:var(--text)}
+footer .ftitle{color:var(--primary);font-weight:600}
+footer .fcontact{margin:8px 0}
+footer a{color:var(--primary);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .sep{margin:0 10px;opacity:.5}
+footer .fnote{font-size:.78rem;margin-top:10px}
+
+@media(max-width:860px){
+  .layout{grid-template-columns:1fr}
+  .results{position:static;max-height:none;overflow:visible}
+  .tabs{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+}
+@media print{
+  .no-print,.tabs-wrap,.top-bar,.sug-box{display:none!important}
+  body{background:#fff;padding-bottom:0}
+  .panel{display:none!important}
+  .panel.active{display:block!important}
+  .layout{display:block}
+  .results{position:static;max-height:none;overflow:visible}
+  .card{box-shadow:none;break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar no-print">
+    <span class="ver-badge" id="verBadge"></span>
+    <div class="lang-switch" role="group" aria-label="Language switcher">
+      <button type="button" class="lang-btn active" data-lang="ar">العربية</button>
+      <button type="button" class="lang-btn" data-lang="en">English</button>
+    </div>
+  </div>
+  <div class="brand">
+    <svg width="68" height="68" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="37" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.45)" stroke-width="1.5"/>
+      <g stroke="rgba(255,255,255,.45)" stroke-width="1.5" stroke-linecap="round">
+        <line x1="40" y1="3" x2="40" y2="9"/><line x1="40" y1="71" x2="40" y2="77"/>
+        <line x1="3" y1="40" x2="9" y2="40"/><line x1="71" y1="40" x2="77" y2="40"/>
+      </g>
+      <path d="M40 14 L48 40 L40 35 L32 40 Z" fill="#e36414"/>
+      <path d="M40 66 L48 40 L40 45 L32 40 Z" fill="rgba(255,255,255,.85)"/>
+      <circle cx="40" cy="40" r="4.5" fill="#fff"/>
+      <circle cx="40" cy="40" r="2" fill="#0f4c5c"/>
+    </svg>
+    <div>
+      <h1 id="hdrTitle"></h1>
+      <p class="en" id="hdrSub"></p>
+      <p class="tag" id="hdrTag"></p>
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrap no-print">
+  <nav class="tabs" role="tablist">
+    <button type="button" class="tab-btn active" data-tab="advisor" id="tabAdvisor"></button>
+    <button type="button" class="tab-btn" data-tab="readiness" id="tabReadiness"></button>
+    <button type="button" class="tab-btn" data-tab="urban" id="tabUrban"></button>
+  </nav>
+</div>
+
+
+<div class="tools-bar no-print">
+  <button type="button" class="btn" id="presetBtn"></button>
+  <button type="button" class="btn" id="resetBtn"></button>
+</div>
+
+<div class="container">
+
+  <!-- البيانات المشتركة -->
+  <section class="card">
+    <h2 id="metaTitle"></h2>
+    <div class="grid-2">
+      <div class="field">
+        <label for="studentName" id="lblStudent"></label>
+        <input type="text" id="studentName">
+      </div>
+      <div class="field">
+        <label for="projectTitle" id="lblProject"></label>
+        <input type="text" id="projectTitle">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== الأداة 1: مستشار توجيه المسار ==================== -->
+  <div class="panel active" id="panel-advisor">
+    <div class="layout">
+      <main>
+        <section class="card">
+          <h2 id="advQTitle"></h2>
+          <div id="advisorQuestions"></div>
+        </section>
+      </main>
+
+      <aside class="results">
+        <section class="card">
+          <h2 id="advRTitle"></h2>
+          <div id="advisorResults"></div>
+          <div class="actions no-print">
+            <button type="button" class="btn primary" id="expAdvisorBtn"></button>
+            <button type="button" class="btn" id="copyAdvisorBtn"></button>
+          </div>
+          <p class="note" id="advNote"></p>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== الأداة 2: مقيّم جاهزية المشروع ==================== -->
+  <div class="panel" id="panel-readiness">
+    <div class="layout">
+      <main>
+        <section class="card">
+          <h2 id="redQTitle"></h2>
+          <div id="readinessList"></div>
+        </section>
+      </main>
+
+      <aside class="results">
+        <section class="card">
+          <h2 id="redRTitle"></h2>
+          <div class="score-top">
+            <div class="score-big"><span id="rTotal">0</span><small>/100</small></div>
+            <div class="pills">
+              <span class="pill g" id="rPillG"></span>
+              <span class="pill m" id="rPillM"></span>
+              <span class="pill b" id="rPillB"></span>
+            </div>
+          </div>
+          <div id="rVerdict" class="verdict mid">—</div>
+          <div id="rFlag" class="flag" hidden></div>
+          <p class="verdict-msg" id="rMsg"></p>
+          <canvas id="rRadar"></canvas>
+          <div class="tips-title" id="redTipsTitle"></div>
+          <div id="rTips"></div>
+          <div class="actions no-print">
+            <button type="button" class="btn primary" id="expReadinessBtn"></button>
+            <button type="button" class="btn" id="copyReadinessBtn"></button>
+            <button type="button" class="btn" id="printReadinessBtn" onclick="window.print()"></button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ==================== الأداة 3: تشخيص الحي / الموقع الحضري ==================== -->
+  <div class="panel" id="panel-urban">
+    <div class="layout">
+      <main>
+        <section class="card">
+          <h2 id="urbQTitle"></h2>
+          <div id="urbanList"></div>
+        </section>
+      </main>
+
+      <aside class="results">
+        <section class="card">
+          <h2 id="urbRTitle"></h2>
+          <div class="score-top">
+            <div class="score-big"><span id="uTotal">0</span><small>/100</small></div>
+            <div class="pills">
+              <span class="pill g" id="uPillG"></span>
+              <span class="pill m" id="uPillM"></span>
+              <span class="pill b" id="uPillB"></span>
+            </div>
+          </div>
+          <div id="uVerdict" class="verdict mid">—</div>
+          <div id="uFlag" class="flag" hidden></div>
+          <p class="verdict-msg" id="uMsg"></p>
+          <canvas id="uRadar"></canvas>
+          <div class="tips-title" id="urbTipsTitle"></div>
+          <div id="uTips"></div>
+          <div class="actions no-print">
+            <button type="button" class="btn primary" id="expUrbanBtn"></button>
+            <button type="button" class="btn" id="copyUrbanBtn"></button>
+            <button type="button" class="btn" id="printUrbanBtn" onclick="window.print()"></button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <!-- بطاقة الاستشارة والمقترحات -->
+  <section class="card no-print">
+    <div class="consult-flex">
+      <div class="consult-info">
+        <h2 id="consTitle"></h2>
+        <p id="consDesc"></p>
+        <div class="actions">
+          <a class="btn wa" id="waBtn" target="_blank" rel="noopener"></a>
+          <a class="btn" id="mailBtn"></a>
+        </div>
+      </div>
+      <div class="consult-info sug-box">
+        <h2 id="sugTitle"></h2>
+        <div class="field">
+          <label for="suggestionText" id="lblSug"></label>
+          <textarea id="suggestionText"></textarea>
+        </div>
+        <div class="actions">
+          <a class="btn primary" id="sendSugMailBtn"></a>
+          <button type="button" class="btn" id="clearSugBtn"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p class="fname"><b id="ftrName"></b></p>
+  <p class="ftitle" id="ftrRole"></p>
+  <p class="fcontact">
+    <a href="mailto:emohammedani@gmail.com">emohammedani@gmail.com</a>
+    <span class="sep">•</span>
+    <a href="https://wa.me/971569758180" target="_blank" rel="noopener" dir="ltr">+971 56 975 8180</a>
+  </p>
+  <p class="fnote">© <span id="yy"></span> <span id="ftrNote"></span></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=t=>String(t).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+function toast(m){const el=$('toast');el.textContent=m;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300);}
+function todayStr(){const d=new Date();return d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');}
+
+/* ==================== قاموس الواجهة ثنائي اللغة ==================== */
+const UI={
+  ar:{
+    dir:'rtl',
+    verBadge:'النسخة 1.1',
+    presetBtn:'✨ نموذج حالة جاهز',
+    resetBtn:'↺ إعادة الضبط',
+    presetLoaded:'تم تحميل نموذج حالة جاهز للمعاينة ✨',
+    resetDone:'تمت إعادة الضبط إلى الوضع الافتراضي',
+
+    hdrTitle:'مسار التخرج — مستشار التوجيه وتقييم الجاهزية',
+    hdrSub:'GRADUATION PATHWAY & READINESS ADVISOR',
+    hdrTag:'منصة تفاعلية متكاملة لطلاب العمارة والتخطيط: توجيه المسار، قياس جاهزية المشروع، وتشخيص الموقع الحضري',
+    tabAdvisor:'🧭 1. مستشار توجيه المسار',
+    tabReadiness:'📋 2. مقيّم جاهزية المشروع',
+    tabUrban:'🏙️ 3. تشخيص الحي / الموقع',
+    metaTitle:'بيانات الطالب والمشروع (تُدرج تلقائيًا في جميع التقارير)',
+    lblStudent:'اسم الطالب / المجموعة',
+    phStudent:'مثال: سارة أحمد — المستوى الخامس',
+    lblProject:'عنوان المشروع أو الموقع المقترح',
+    phProject:'مثال: إعادة تأهيل الواجهة النيلية / حي الملز',
+    advQTitle:'حدد ميولك وإمكاناتك لاقتراح أنسب مسارات مشروع التخرج',
+    advRTitle:'المسارات البحثية والتصميمية المقترحة',
+    expAdvisor:'📥 تصدير خطة التوجيه',
+    copyAdvisor:'نسخ التوصيات',
+    advNote:'تساعدك هذه التوصيات على تحويل اهتمامك العام إلى مشكلة تصميمية محددة',
+    redQTitle:'مؤشرات جاهزية المشروع للتسليم أو التحكيم (١–١٠)',
+    redRTitle:'مؤشر الجاهزية العام',
+    redTipsTitle:'أولويات العمل قبل التسليم (أقل من 8/10)',
+    expReadiness:'📥 تصدير تقرير الجاهزية',
+    copyReadiness:'نسخ الملخص',
+    printBtn:'طباعة',
+    urbQTitle:'مؤشرات تقييم الموقع والحي الحضري (١–١٠)',
+    urbRTitle:'نتيجة تشخيص الحي / الموقع',
+    urbTipsTitle:'تدخلات حضرية ومعمارية مقترحة',
+    expUrban:'📥 تصدير تقرير التشخيص',
+    copyUrban:'نسخ التشخيص',
+    consTitle:'مشاركة النتيجة للاستشارة الأكاديمية',
+    consDesc:'أرسل ملخص الأداة النشطة حاليًا مباشرة إلى <b>د. اعتزاز عبدالرحمن محمداني</b> — أستاذ مساعد في العمارة وتخطيط المدن — لمناقشة الخطوة التالية في مشروعك.',
+    waBtn:'💬 إرسال عبر واتساب',
+    mailBtn:'✉️ إرسال بالبريد',
+    sugTitle:'إرسال مقترح أو ملاحظة تطويرية',
+    lblSug:'هل لديك مقترح لتحسين المعايير أو إضافة ميزة جديدة؟',
+    phSug:'اكتب مقترحك أو ملاحظتك هنا ثم أرسله عبر البريد الإلكتروني...',
+    sendSugMailBtn:'✉️ إرسال المقترح بالبريد',
+    clearSugBtn:'مسح النص',
+    sugEmpty:'اكتب مقترحك أولًا قبل الإرسال ✍️',
+    cleared:'تم مسح النص',
+    ftrName:'د. اعتزاز عبدالرحمن محمداني',
+    ftrRole:'أستاذ مساعد في العمارة وتخطيط المدن',
+    ftrNote:'النسخة 1.1 — مسار التخرج: أداة رقمية تفاعلية لطلاب العمارة وتخطيط المدن',
+    bands:['حرج —','متوسط —','قوي —'],
+    pillsR:['مكتمل (8–10): ','قيد العمل (4–7): ','متأخر (1–3): '],
+    pillsU:['كفاءة عالية (8–10): ','متوسطة (4–7): ','فجوة حرجة (1–3): '],
+    matchLbl:'توافق',
+    methodTitle:'توصية منهجية لجمع البيانات:',
+    methodField:'بما أن الوصول الميداني متاح، ابدأ بتوثيق فوتوغرافي ورصد حركة المستخدمين في أوقات الذروة.',
+    methodRemote:'بما أن الاعتماد الأساسي على البيانات المفتوحة، استثمر صور الأقمار الصناعية والخرائط المفتوحة وتحليل الحالات المرجعية.',
+    rOk:'جميع محاور المشروع في مستوى جاهزية قوي (8/10 فأعلى).',
+    uOk:'جميع مؤشرات الموقع تحقق أداءً مرتفعًا (8/10 فأعلى).',
+    rFlagPrefix:'⚠ بنود متأخرة بشدة: ',
+    uFlagPrefix:'⚠ فجوات عمرانية حرجة: ',
+    copied:'تم النسخ ✅',
+    copyErr:'انسخ النص يدويًا',
+    downloaded:'تم تنزيل التقرير المنسّق 📥'
+  },
+  en:{
+    dir:'ltr',
+    verBadge:'Version 1.1',
+    presetBtn:'✨ Load Sample Case',
+    resetBtn:'↺ Reset All',
+    presetLoaded:'Sample architectural & urban case loaded ✨',
+    resetDone:'Reset to default values',
+
+    hdrTitle:'Graduation Pathway — Advisor & Readiness Evaluator',
+    hdrSub:'ARCHITECTURE & URBAN PLANNING GRADUATION TOOLKIT',
+    hdrTag:'Interactive platform for Architecture & Urban Planning students: Track Advisor, Project Readiness, and Site Diagnosis',
+    tabAdvisor:'🧭 1. Track Advisor',
+    tabReadiness:'📋 2. Project Readiness',
+    tabUrban:'🏙️ 3. Neighborhood / Site Diagnosis',
+    metaTitle:'Student & Project Information (Auto-included in all reports)',
+    lblStudent:'Student / Group Name',
+    phStudent:'e.g., Sara Ahmed — 5th Year Architecture',
+    lblProject:'Proposed Project Title or Site',
+    phProject:'e.g., Nile Waterfront Revitalization / Al-Malaz District',
+    advQTitle:'Select your interests & strengths to generate tailored graduation tracks',
+    advRTitle:'Recommended Research & Design Pathways',
+    expAdvisor:'📥 Export Pathway Plan',
+    copyAdvisor:'Copy Recommendations',
+    advNote:'Use these pathways to narrow a broad interest into a clear design problem',
+    redQTitle:'Project Readiness Indicators for Jury / Submission (1–10)',
+    redRTitle:'Overall Readiness Index',
+    redTipsTitle:'Action Priorities Before Submission (Below 8/10)',
+    expReadiness:'📥 Export Readiness Report',
+    copyReadiness:'Copy Summary',
+    printBtn:'Print',
+    urbQTitle:'Urban Site & Neighborhood Evaluation Indicators (1–10)',
+    urbRTitle:'Site / Neighborhood Diagnosis Score',
+    urbTipsTitle:'Recommended Urban & Architectural Interventions',
+    expUrban:'📥 Export Diagnosis Report',
+    copyUrban:'Copy Diagnosis',
+    consTitle:'Share Result for Academic Consultation',
+    consDesc:'Send the active tool summary directly to <b>Dr. Eatezaz Abdelrahman Mohammedani</b> — Assistant Professor of Architecture & Urban Planning — to discuss your next step.',
+    waBtn:'💬 Send via WhatsApp',
+    mailBtn:'✉️ Send via Email',
+    sugTitle:'Submit a Suggestion or Improvement Note',
+    lblSug:'Have an idea to refine criteria or add a helpful feature?',
+    phSug:'Write your suggestion or feedback here and send it via email...',
+    sendSugMailBtn:'✉️ Send Suggestion by Email',
+    clearSugBtn:'Clear',
+    sugEmpty:'Please write a suggestion first ✍️',
+    cleared:'Cleared',
+    ftrName:'Dr. Eatezaz Abdelrahman Mohammedani',
+    ftrRole:'Assistant Professor of Architecture & Urban Planning',
+    ftrNote:'Version 1.1 — Graduation Pathway: Interactive digital toolkit for Architecture & Urban Planning students',
+    bands:['Critical —','Moderate —','Strong —'],
+    pillsR:['Ready (8–10): ','In Progress (4–7): ','Delayed (1–3): '],
+    pillsU:['High (8–10): ','Moderate (4–7): ','Critical Gap (1–3): '],
+    matchLbl:'Match',
+    methodTitle:'Data Collection Strategy:',
+    methodField:'Since field access is available, begin with photographic documentation and peak-hour user movement mapping.',
+    methodRemote:'Since you rely mainly on open data, leverage satellite imagery, OpenStreetMap layers, and precedent analysis.',
+    rOk:'All project dimensions are at a strong readiness level (8/10 or higher).',
+    uOk:'All site indicators show strong urban performance (8/10 or higher).',
+    rFlagPrefix:'⚠ Severely delayed items: ',
+    uFlagPrefix:'⚠ Critical urban gaps: ',
+    copied:'Copied to clipboard ✅',
+    copyErr:'Please copy manually',
+    downloaded:'Formatted report downloaded 📥'
+  }
+};
+
+/* ==================== بيانات الأسئلة والمعايير باللغتين ==================== */
+const ADVISOR_QUESTIONS=[
+  {
+    q:'scale',
+    ar:'1. ما النطاق المكاني الأقرب لشغفك المعماري أو التخطيطي؟',
+    en:'1. Which spatial scale best matches your architectural or planning interest?',
+    opts:[
+      {val:'building',ar:'مبنى عام أو مجمع وظيفي',en:'Public Building or Functional Complex'},
+      {val:'urban',ar:'فراغ عام / نسيج حضري / حي سكني',en:'Public Realm / Urban Fabric / Neighborhood'},
+      {val:'heritage',ar:'تراث عمراني وإعادة تأهيل',en:'Urban Heritage & Adaptive Reuse'},
+      {val:'housing',ar:'إسكان مجتمعي ومستدام',en:'Community & Sustainable Housing'}
+    ]
+  },
+  {
+    q:'issue',
+    ar:'2. ما القضية المعاصرة التي ترغب أن يعالجها مشروعك؟',
+    en:'2. Which contemporary challenge do you want your project to address?',
+    opts:[
+      {val:'climate',ar:'التكيف المناخي والاستدامة البيئية',en:'Climate Adaptation & Environmental Sustainability'},
+      {val:'recovery',ar:'إعمار ما بعد الأزمات والمرونة الحضرية',en:'Post-Crisis Reconstruction & Urban Resilience'},
+      {val:'human',ar:'أنسنة المدن وجودة الحياة',en:'Humanizing Cities & Quality of Life'},
+      {val:'tech',ar:'العمارة الذكية والابتكار التقني',en:'Smart Architecture & Technical Innovation'}
+    ]
+  },
+  {
+    q:'skill',
+    ar:'3. ما نقطة قوتك المهارية الأبرز؟',
+    en:'3. What is your strongest technical or analytical skill?',
+    opts:[
+      {val:'form',ar:'التشكيل المعماري والتفاصيل التنفيذية',en:'Architectural Form & Detailing'},
+      {val:'gis',ar:'التحليل المكاني والبيانات الحضرية (GIS)',en:'Spatial Analysis & Urban Data (GIS)'},
+      {val:'env',ar:'المحاكاة البيئية والمواد المحلية',en:'Environmental Simulation & Local Materials'},
+      {val:'social',ar:'البحث الميداني والمشاركة المجتمعية',en:'Field Research & Community Engagement'}
+    ]
+  },
+  {
+    q:'access',
+    ar:'4. ما مستوى توفر البيانات والوصول للموقع؟',
+    en:'4. What is your level of site access and data availability?',
+    opts:[
+      {val:'field',ar:'يمكنني زيارة الموقع والتصوير والرفع الميداني',en:'Direct field visits, photography & surveys are possible'},
+      {val:'remote',ar:'الاعتماد الأكبر على الخرائط الجوية والبيانات المفتوحة',en:'Mainly relying on satellite imagery & open datasets'}
+    ]
+  }
+];
+
+const TRACKS=[
+  {
+    scale:'urban',issue:'human',skill:'social',
+    ar:{
+      title:'أنسنة الأحياء السكنية وصناعة المكان (Placemaking)',
+      desc:'يركز على إعادة صياغة الشوارع والفراغات البينية لتعزيز المشي، التفاعل الاجتماعي، والانتماء المجتمعي.',
+      ex:'مثال تطبيقي: تطوير شبكة ممرات مشاة وحدائق جيبية تربط الخدمات اليومية في حي سكني قائم.'
+    },
+    en:{
+      title:'Neighborhood Humanization & Placemaking',
+      desc:'Focuses on reshaping streets and residual spaces to enhance walkability, social interaction, and place attachment.',
+      ex:'Example: Designing a shaded pedestrian network and pocket parks linking daily services in an existing neighborhood.'
+    }
+  },
+  {
+    scale:'heritage',issue:'recovery',skill:'env',
+    ar:{
+      title:'إعادة تأهيل التراث العمراني والعمارة الطينية/المحلية',
+      desc:'يجمع بين صون الذاكرة المكانية وتوظيف المواد والتقنيات المحلية المعاصرة لإعادة إحياء المواقع المتضررة أو المهملة.',
+      ex:'مثال تطبيقي: مركز مجتمعي وحرفي لإعادة إحياء نسيج تاريخي باستخدام الطوب المضغوط والتبريد السلبي.'
+    },
+    en:{
+      title:'Urban Heritage Rehabilitation & Vernacular/Earthen Architecture',
+      desc:'Combines spatial memory preservation with contemporary local materials and passive cooling to revitalize damaged or neglected fabrics.',
+      ex:'Example: A community craft and cultural hub revitalizing a historic fabric using compressed earth blocks.'
+    }
+  },
+  {
+    scale:'housing',issue:'recovery',skill:'env',
+    ar:{
+      title:'الإسكان المرن والمستدام لمرحلة التعافي وإعادة الإعمار',
+      desc:'يصمم وحدات وأحياء سكنية منخفضة التكلفة وقابلة للنمو التدريجي مع كفاءة عالية في استهلاك الطاقة والموارد.',
+      ex:'مثال تطبيقي: حي سكني متكامل بمفهوم «حي الـ 15 دقيقة» يعتمد على البناء المعياري والمواد المحلية.'
+    },
+    en:{
+      title:'Resilient & Incremental Housing for Post-Crisis Recovery',
+      desc:'Designs low-cost, expandable housing units and neighborhoods with high energy and resource efficiency.',
+      ex:'Example: A 15-minute neighborhood prototype integrating modular local construction and productive courtyards.'
+    }
+  },
+  {
+    scale:'urban',issue:'climate',skill:'gis',
+    ar:{
+      title:'التصميم الحضري المتكيف مع المناخ والبيانات المكانية',
+      desc:'يستخدم التحليل المكاني ونظم المعلومات الجغرافية لمعالجة الجزر الحرارية وتحسين الراحة الحرارية الخارجية.',
+      ex:'مثال تطبيقي: ممر أخضر حضري لتخفيف الإجهاد الحراري وربط الواجهات المائية بالنسيج السكني.'
+    },
+    en:{
+      title:'Climate-Adaptive Urban Design & Spatial Analytics',
+      desc:'Uses GIS and spatial diagnostics to mitigate urban heat islands and improve outdoor thermal comfort.',
+      ex:'Example: An urban green corridor mitigating heat stress and connecting waterfronts to residential fabrics.'
+    }
+  },
+  {
+    scale:'building',issue:'climate',skill:'form',
+    ar:{
+      title:'المباني العامة عالية الأداء البيئي (المراكز التعليمية والثقافية)',
+      desc:'يركز على التشكيل المعماري المبتكر المستجيب للمناخ من حيث الإضاءة الطبيعية، التهوية، والغلاف المبني.',
+      ex:'مثال تطبيقي: مجمع تعليمي وبحثي مستدام يدمج الأفنية الداخلية والمعالجات المناخية السلبية.'
+    },
+    en:{
+      title:'High-Performance Public Buildings (Educational & Cultural Hubs)',
+      desc:'Focuses on climate-responsive architectural form integrating daylighting, natural ventilation, and adaptive envelopes.',
+      ex:'Example: A sustainable learning and research complex combining shaded courtyards with passive cooling.'
+    }
+  },
+  {
+    scale:'building',issue:'tech',skill:'form',
+    ar:{
+      title:'العمارة الذكية والابتكار الفراغي والإنشائي',
+      desc:'يستكشف الأنظمة الإنشائية الحديثة، الواجهات التفاعلية، والمرونة الوظيفية في المباني متعددة الاستخدام.',
+      ex:'مثال تطبيقي: مركز ابتكار وتقنيات حضرية بواجهة متكيفة مع حركة الشمس ونظام إنشائي خفيف.'
+    },
+    en:{
+      title:'Smart Architecture & Structural/Spatial Innovation',
+      desc:'Explores advanced structural systems, kinetic/responsive facades, and spatial flexibility in mixed-use buildings.',
+      ex:'Example: An urban innovation center featuring a solar-responsive facade and lightweight structural span.'
+    }
+  }
+];
+
+const READINESS_CRIT=[
+  {id:'r_prob',
+   ar:{short:'المشكلة',title:'صياغة الإشكالية والأهداف',desc:'هل الإشكالية البحثية والتصميمية محددة بدقة ومرتبطة بأهداف قابلة للقياس؟',
+       anchors:['عناوين عامة بلا إشكالية محددة','إشكالية واضحة لكن الأهداف التصميمية فضفاضة','إشكالية محكمة مدعومة بأسئلة بحثية وأهداف تصميمية قابلة للقياس'],
+       tip:'لخّص إشكالية مشروعك في فقرة من 4 أسطر تربط بين المشكلة، الموقع، والفئة المستفيدة.'},
+   en:{short:'Problem',title:'Problem Statement & Objectives',desc:'Is the research/design problem clearly defined and linked to measurable objectives?',
+       anchors:['Broad topic with no defined problem','Clear issue but vague design objectives','Well-framed problem backed by research questions and measurable design goals'],
+       tip:'Summarize your problem statement in 4 lines linking the issue, site, and target user group.'}},
+  {id:'r_lit',
+   ar:{short:'الدراسات',title:'الدراسات المرجعية وتحليل الأمثلة',desc:'هل تم تحليل أمثلة مشابهة (محلية وعالمية) واستخلاص معايير تصميمية منها؟',
+       anchors:['مجرد صور مشاريع دون تحليل نقدي','تحليل وصفي للوظائف والمساحات فقط','مقارنة منهجية تستخلص مؤشرات ومعايير قابلة للتطبيق في موقعك'],
+       tip:'أضف جدول مقارنة بين 3 أمثلة مرجعية يستخرج الدروس المستفادة وظيفيًا وبيئيًا.'},
+   en:{short:'Precedents',title:'Literature & Precedent Analysis',desc:'Have local/global precedents been critically analyzed to extract design criteria?',
+       anchors:['Mere project images without critical analysis','Descriptive review of functions and areas only','Systematic comparison extracting actionable design indicators'],
+       tip:'Include a comparative matrix of 3 precedents highlighting functional and environmental takeaways.'}},
+  {id:'r_site',
+   ar:{short:'الموقع',title:'تحليل الموقع والسياق العمراني',desc:'هل يغطي التحليل المناخ، الحركة، النسيج المحيط، الفرص والمحددات؟',
+       anchors:['خريطة موقع عامة دون ربط بالتصميم','تحليل جيد للمناخ والحركة لكنه منفصل عن القرار التصميمي','تحليل تركيبي يترجم كل معطى مناخي وعمراني إلى قرار تصميمي واضح'],
+       tip:'اربط كل خريطة تحليل بسهم مباشر يوضح: «وبالتالي فإن القرار التصميمي هو...».'},
+   en:{short:'Site',title:'Site & Urban Context Analysis',desc:'Does analysis cover climate, mobility, surrounding fabric, opportunities & constraints?',
+       anchors:['General location map disconnected from design','Good climate/access maps not translated into design','Synthesis translating every site finding into a clear design decision'],
+       tip:'Link every analytical layer directly to its resulting architectural or urban design move.'}},
+  {id:'r_prog',
+   ar:{short:'البرنامج',title:'البرنامج الوظيفي وحساب المساحات',desc:'هل تم تحديد الفراغات، العلاقات الوظيفية، والمساحات بناءً على معايير معتمدة؟',
+       anchors:['قائمة فراغات تقديرية بلا مرجع قياسي','جدول مساحات موجود لكن العلاقات الرأسية والأفقية غير محسومة','برنامج وظيفي دقيق بمخططات علاقات ونسب حركة واضحة'],
+       tip:'راجع نسب الفراغات الخدمية والحركة وتأكد من مطابقتها للكود المعماري المعتمد.'},
+   en:{short:'Program',title:'Functional Program & Area Schedule',desc:'Are spaces, adjacencies, and areas calculated using recognized architectural standards?',
+       anchors:['Estimated space list without standard references','Area table exists but vertical/horizontal zoning is unresolved','Accurate program with adjacency diagrams and circulation ratios'],
+       tip:'Verify service and circulation percentages against standard architectural codes.'}},
+  {id:'r_conc',
+   ar:{short:'الفكرة',title:'الفكرة التصميمية وتطور البدائل',desc:'هل الفكرة نابعة من معطيات الموقع والمشكلة وتطورت عبر بدائل مدروسة؟',
+       anchors:['شكل مفروض مسبقًا لا يعكس الموقع أو الوظيفة','فكرة واضحة لكن لم يُختبر لها بدائل كافية','فكرة متماسكة تطورت عبر 2–3 بدائل واختير الأنسب وفق معايير واضحة'],
+       tip:'اعرض مراحل تطور الكتلة (Concept Evolution) في 4 خطوات متسلسلة تشرح منطق التشكيل.'},
+   en:{short:'Concept',title:'Design Concept & Alternatives',desc:'Is the concept rooted in site/problem findings and tested through design alternatives?',
+       anchors:['Pre-imposed form unrelated to site or function','Clear idea but insufficient alternatives explored','Cohesive concept evolved across 2–3 evaluated alternatives'],
+       tip:'Present a 4-step massing evolution diagram clearly explaining your form generation logic.'}},
+  {id:'r_plans',
+   ar:{short:'المساقط',title:'اكتمال المساقط والقطاعات والواجهات',desc:'هل الرسومات المعمارية متطابقة، بمقياس رسم مناسب، وتوضح الحلول الوظيفية؟',
+       anchors:['مخططات أولية غير مكتملة أو بها تعارضات بين الأدوار','المساقط مكتملة تقريبًا لكن القطاعات والواجهات تحتاج تفصيلًا','مجموعة رسومات متكاملة ومتطابقة توضح العلاقة مع الأرض والمحيط'],
+       tip:'طابق المحاور الإنشائية والسلالم والمناسيب بين جميع المساقط والقطاعات قبل الإخراج.'},
+   en:{short:'Drawings',title:'Plans, Sections & Elevations',desc:'Are architectural drawings coordinated, properly scaled, and functionally clear?',
+       anchors:['Incomplete draft plans with floor misalignments','Plans mostly done but sections/elevations lack depth','Coordinated drawing set clearly showing ground & context integration'],
+       tip:'Cross-check structural grids, stairs, and levels across all floor plans and sections.'}},
+  {id:'r_tech',
+   ar:{short:'التقنية',title:'الحلول الإنشائية والبيئية والتفاصيل',desc:'هل يوضح المشروع النظام الإنشائي، المعالجات البيئية، وتفصيلة معمارية مميزة؟',
+       anchors:['غياب النظام الإنشائي أو المعالجات البيئية','ذكر عام للنظام الإنشائي دون انعكاسه على القطاعات','تكامل واضح بين النظام الإنشائي، التهوية/الإضاءة الطبيعية، وتفاصيل الغلاف'],
+       tip:'اختر قطاعًا تفصيليًا (Wall Section) يوضح المواد والعزل والمعالجات المناخية.'},
+   en:{short:'Technical',title:'Structural, Environmental & Detail Integration',desc:'Does the project demonstrate structural logic, passive strategies, and key wall details?',
+       anchors:['Missing structural system or environmental strategies','Generic mention of structure not reflected in sections','Clear integration of structure, daylight/ventilation, and envelope detail'],
+       tip:'Develop one detailed wall section illustrating materials, insulation, and climate response.'}},
+  {id:'r_pres',
+   ar:{short:'الإخراج',title:'جودة الإخراج البصري وسرد القصة',desc:'هل اللوحات منظمة بصريًا بتسلسل منطقي يقود المحكّم من المشكلة إلى الحل؟',
+       anchors:['تكدّس الرسومات والنصوص دون تدرج بصري','لوحات نظيفة لكن التسلسل السردي بين التحليل والتصميم ضعيف','هوية بصرية موحدة وتسلسل منطقي يبرز الفكرة الرئيسية خلال 3 دقائق'],
+       tip:'طبّق قاعدة الـ 30 ثانية: يجب أن يفهم المحكّم جوهر مشروعك من عنوان اللوحة والمخطط الرئيسي فورًا.'},
+   en:{short:'Presentation',title:'Visual Layout & Storytelling',desc:'Are boards visually organized in a logical flow guiding the jury from problem to solution?',
+       anchors:['Cluttered drawings and text without visual hierarchy','Clean boards but weak narrative link between analysis and design','Unified graphic identity with a clear 3-minute visual storyline'],
+       tip:'Apply the 30-second rule: the jury should grasp your core idea immediately from the main diagram.'}}
+];
+
+const URBAN_CRIT=[
+  {id:'u_conn',
+   ar:{short:'الاتصال',title:'سهولة الوصول والاتصالية',desc:'ترابط شبكة الشوارع، قرب النقل العام، وسهولة الوصول من الأحياء المجاورة.',
+       anchors:['عزلة عمرانية وضعف الربط بالشبكة الرئيسية','وصول مقبول للمركبات مع ضعف في النقل العام','شبكة مترابطة تتيح الوصول المتعدد والآمن خلال 10–15 دقيقة'],
+       tip:'اقترح مسارات ربط مباشر مع محطات النقل العام وتقليل الحواجز الفيزيائية.'},
+   en:{short:'Connectivity',title:'Accessibility & Street Connectivity',desc:'Street network permeability, transit proximity, and links to adjacent districts.',
+       anchors:['Urban isolation and weak links to arterial networks','Adequate car access but poor public transit links','Permeable network enabling safe 10–15 minute multimodal access'],
+       tip:'Propose direct pedestrian links to transit stops and remove physical severance barriers.'}},
+  {id:'u_walk',
+   ar:{short:'المشاة',title:'جودة الأرصفة وقابلية المشي',desc:'استمرارية الأرصفة، عرضها، خلوها من العوائق، وملاءمتها لكبار السن وذوي الإعاقة.',
+       anchors:['أرصفة متقطعة أو محتلة أو غير صالحة للمشي','أرصفة موجودة لكنها ضيقة وتفتقر للتظليل والعبور الآمن','مسارات مشاة مستمرة، مظللة، ومجهزة بمنحدرات ومعابر آمنة'],
+       tip:'أعد توزيع مقطع الشارع لتخصيص رصيف آمن بعرض لا يقل عن 2.5م مع معابر مستوية.'},
+   en:{short:'Walkability',title:'Sidewalk Quality & Walkability',desc:'Sidewalk continuity, width, obstacle-free paths, and universal accessibility.',
+       anchors:['Discontinuous, obstructed, or unwalkable sidewalks','Narrow sidewalks lacking shade and safe crossings','Continuous, shaded, universally accessible pedestrian corridors'],
+       tip:'Reallocate street right-of-way to provide ≥2.5m unobstructed sidewalks and raised crossings.'}},
+  {id:'u_climate',
+   ar:{short:'المناخ',title:'الراحة الحرارية والتشجير',desc:'توفر الظل الطبيعي أو الصناعي، الغطاء النباتي، وتقليل الجزر الحرارية الحضرية.',
+       anchors:['أسطح إسفلتية مكشوفة وحرارة مرتفعة معظم اليوم','تشجير متفرق لا يوفر مسارات مظللة متصلة','نسيج مظلل مدروس يدمج التشجير المحلي والمواد ذات الانعكاسية العالية'],
+       tip:'استخدم الأشجار المحلية كثيفة الظل والممرات المسقوفة في المحاور ذات الكثافة الحركية الأعلى.'},
+   en:{short:'Microclimate',title:'Thermal Comfort & Urban Greenery',desc:'Availability of tree canopy, shading structures, vegetation, and heat island mitigation.',
+       anchors:['Exposed asphalt surfaces and extreme heat stress','Scattered trees without continuous shaded routes','Shaded microclimate integrating native trees and high-albedo surfaces'],
+       tip:'Deploy native dense-canopy trees and arcades along primary pedestrian movement axes.'}},
+  {id:'u_mix',
+   ar:{short:'الاستعمالات',title:'تنوع الاستعمالات والخدمات اليومية',desc:'توفر الخدمات الأساسية (تعليم، صحة، تجارة يومية، ترفيه) على مسافة مشي.',
+       anchors:['استعمال سكني أحادي يفتقر للخدمات اليومية','خدمات متركزة على الأطراف فقط وبعيدة عن قلب الحي','توزيع متوازن للخدمات اليومية في الطوابق الأرضية وعلى محاور الحركة'],
+       tip:'فعّل الطوابق الأرضية على الشوارع الرئيسية بأنشطة مجتمعية وتجارية تخدم السكان.'},
+   en:{short:'Land Use',title:'Mixed Use & Daily Amenities',desc:'Availability of essential services (education, health, retail, recreation) within walking distance.',
+       anchors:['Monofunctional residential zone lacking daily services','Services concentrated only on outer edges','Balanced distribution of active ground-floor services along movement spines'],
+       tip:'Activate ground floors along main streets with neighborhood retail and community services.'}},
+  {id:'u_public',
+   ar:{short:'الفراغات',title:'الفراغات العامة والتفاعل الاجتماعي',desc:'وجود ساحات، حدائق جيبية، وأماكن جلوس تشجع على التلاقي والانتماء.',
+       anchors:['غياب الفراغات العامة أو تحولها لمواقف عشوائية','فراغات مفتوحة موجودة لكنها مهملة وغير مجهزة','منظومة فراغات عامة نشطة وآمنة تناسب مختلف الفئات العمرية'],
+       tip:'حوّل الأراضي الفضاء البينية إلى حدائق جيبية (Pocket Parks) بمواد محلية بسيطة.'},
+   en:{short:'Public Space',title:'Public Spaces & Social Interaction',desc:'Presence of plazas, pocket parks, and seating that foster community gathering.',
+       anchors:['Lack of public spaces or takeover by informal parking','Open spaces exist but are neglected and unequipped','Active, safe network of public spaces serving all age groups'],
+       tip:'Convert vacant interstitial plots into shaded pocket parks using simple local materials.'}},
+  {id:'u_ident',
+   ar:{short:'الهوية',title:'الهوية العمرانية والذاكرة المكانية',desc:'الحفاظ على الطابع المحلي، المعالم المميزة، والمواد المتوافقة مع البيئة والثقافة.',
+       anchors:['طمس الطابع المحلي وتكرار أنماط غريبة عن السياق','عناصر تراثية أو محلية معزولة دون توظيف حي','نسيج يعزز الذاكرة المكانية ويوظف المفردات والمواد المحلية بروح معاصرة'],
+       tip:'وثّق المفردات العمرانية والمواد المحلية في الموقع وأدمجها في واجهات وفراغات المشروع.'},
+   en:{short:'Identity',title:'Urban Identity & Spatial Memory',desc:'Preservation of local character, landmarks, and culturally/climatically appropriate materials.',
+       anchors:['Loss of local character and generic imported patterns','Isolated heritage elements without active integration','Fabric reinforcing spatial memory with contemporary vernacular elements'],
+       tip:'Document local architectural vocabulary and materials and reinterpret them in facades and streetscapes.'}},
+  {id:'u_infra',
+   ar:{short:'البنية',title:'كفاءة البنية التحتية وإدارة الموارد',desc:'تصريف مياه الأمطار، الإنارة، إدارة النفايات، واستدامة الشبكات.',
+       anchors:['تدهور واضح في الشبكات أو تجمعات مياه ونفايات','بنية أساسية تعمل بحدها الأدنى دون حلول مستدامة','بنية تحتية مرنة تعتمد على الصرف المستدام والإنارة الموفرة للطاقة'],
+       tip:'ادمج حلول التصريف المستدام (Bioswales) والإنارة الشمسية ضمن تصميم الشوارع والساحات.'},
+   en:{short:'Infrastructure',title:'Infrastructure & Resource Efficiency',desc:'Stormwater drainage, street lighting, waste management, and sustainable utilities.',
+       anchors:['Deteriorated networks, flooding, or waste accumulation','Basic utilities operating without sustainability measures','Resilient infrastructure using bioswales and solar street lighting'],
+       tip:'Integrate permeable paving, bioswales, and solar lighting into street and plaza designs.'}},
+  {id:'u_resil',
+   ar:{short:'المرونة',title:'المرونة الحضرية وقابلية التطوير',desc:'قدرة الموقع على استيعاب النمو المستقبلي والتعافي من الأزمات والتغيرات.',
+       anchors:['نسيج جامد أو متضرر يصعب تأهيله على مراحل','قابلية جزئية للتطوير لكن دون رؤية مرحلية واضحة','نسيج مرن يسمح بالتدخل التدريجي (Tactical to Permanent) بمشاركة السكان'],
+       tip:'قسّم مقترحك العمراني إلى 3 مراحل زمنية: تدخلات سريعة، متوسطة، وطويلة المدى.'},
+   en:{short:'Resilience',title:'Urban Resilience & Phased Adaptability',desc:'Capacity of the site to accommodate future growth and recover from crises or shocks.',
+       anchors:['Rigid or damaged fabric difficult to phase','Partial adaptability without a clear phased strategy','Flexible fabric enabling tactical-to-permanent community-led phasing'],
+       tip:'Structure your urban proposal into 3 phases: short-term tactical, medium-term, and long-term.'}}
+];
+
+/* ==================== الحالة والحفظ ==================== */
+let appState={
+  lang:'ar',
+  tab:'advisor',
+  student:'',
+  title:'',
+  suggestion:'',
+  advisor:{scale:'building',issue:'climate',skill:'form',access:'field'},
+  readiness:{},
+  urban:{}
+};
+READINESS_CRIT.forEach(c=>appState.readiness[c.id]=6);
+URBAN_CRIT.forEach(c=>appState.urban[c.id]=5);
+
+const band=s=>{
+  const lbls=UI[appState.lang].bands;
+  return s<=3?{i:0,cls:'bad',lbl:lbls[0]} : s<=7?{i:1,cls:'mid',lbl:lbls[1]} : {i:2,cls:'good',lbl:lbls[2]};
+};
+
+function save(){try{localStorage.setItem('gradPathwayV2',JSON.stringify(appState));}catch(e){}}
+function load(){
+  try{
+    const raw=localStorage.getItem('gradPathwayV2')||localStorage.getItem('gradPathwayV1'); if(!raw) return;
+    const d=JSON.parse(raw); if(!d) return;
+    if(d.lang==='en'||d.lang==='ar') appState.lang=d.lang;
+    if(d.tab) appState.tab=d.tab;
+    if(typeof d.student==='string') appState.student=d.student;
+    if(typeof d.title==='string') appState.title=d.title;
+    if(typeof d.suggestion==='string') appState.suggestion=d.suggestion;
+    if(d.advisor) Object.assign(appState.advisor,d.advisor);
+    READINESS_CRIT.forEach(c=>{if(d.readiness&&typeof d.readiness[c.id]==='number') appState.readiness[c.id]=d.readiness[c.id];});
+    URBAN_CRIT.forEach(c=>{if(d.urban&&typeof d.urban[c.id]==='number') appState.urban[c.id]=d.urban[c.id];});
+  }catch(e){}
+}
+
+/* ==================== تطبيق اللغة ==================== */
+function applyLanguage(){
+  const L=UI[appState.lang];
+  document.documentElement.lang=appState.lang;
+  document.documentElement.dir=L.dir;
+
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===appState.lang));
+
+  $('verBadge').textContent=L.verBadge;
+  $('presetBtn').textContent=L.presetBtn;
+  $('resetBtn').textContent=L.resetBtn;
+
+  $('hdrTitle').textContent=L.hdrTitle;
+  $('hdrSub').textContent=L.hdrSub;
+  $('hdrTag').textContent=L.hdrTag;
+  $('tabAdvisor').textContent=L.tabAdvisor;
+  $('tabReadiness').textContent=L.tabReadiness;
+  $('tabUrban').textContent=L.tabUrban;
+
+  $('metaTitle').textContent=L.metaTitle;
+  $('lblStudent').textContent=L.lblStudent;
+  $('studentName').placeholder=L.phStudent;
+  $('lblProject').textContent=L.lblProject;
+  $('projectTitle').placeholder=L.phProject;
+
+  $('advQTitle').textContent=L.advQTitle;
+  $('advRTitle').textContent=L.advRTitle;
+  $('expAdvisorBtn').textContent=L.expAdvisor;
+  $('copyAdvisorBtn').textContent=L.copyAdvisor;
+  $('advNote').textContent=L.advNote;
+
+  $('redQTitle').textContent=L.redQTitle;
+  $('redRTitle').textContent=L.redRTitle;
+  $('redTipsTitle').textContent=L.redTipsTitle;
+  $('expReadinessBtn').textContent=L.expReadiness;
+  $('copyReadinessBtn').textContent=L.copyReadiness;
+  $('printReadinessBtn').textContent=L.printBtn;
+
+  $('urbQTitle').textContent=L.urbQTitle;
+  $('urbRTitle').textContent=L.urbRTitle;
+  $('urbTipsTitle').textContent=L.urbTipsTitle;
+  $('expUrbanBtn').textContent=L.expUrban;
+  $('copyUrbanBtn').textContent=L.copyUrban;
+  $('printUrbanBtn').textContent=L.printBtn;
+
+  $('consTitle').textContent=L.consTitle;
+  $('consDesc').innerHTML=L.consDesc;
+  $('waBtn').textContent=L.waBtn;
+  $('mailBtn').textContent=L.mailBtn;
+
+  $('sugTitle').textContent=L.sugTitle;
+  $('lblSug').textContent=L.lblSug;
+  $('suggestionText').placeholder=L.phSug;
+  $('sendSugMailBtn').textContent=L.sendSugMailBtn;
+  $('clearSugBtn').textContent=L.clearSugBtn;
+
+  $('ftrName').textContent=L.ftrName;
+  $('ftrRole').textContent=L.ftrRole;
+  $('ftrNote').textContent=L.ftrNote;
+
+  renderAdvisorQuestions();
+  renderAdvisor();
+  buildSliders('readinessList',READINESS_CRIT,appState.readiness,'readiness');
+  buildSliders('urbanList',URBAN_CRIT,appState.urban,'urban');
+  updateReadiness();
+  updateUrban();
+}
+
+/* ==================== الرسم الراداري ==================== */
+function drawRadar(cvs,criteria,scoresObj,color){
+  const size=cvs.clientWidth; if(!size) return;
+  const dpr=window.devicePixelRatio||1;
+  cvs.width=size*dpr; cvs.height=size*dpr;
+  const ctx=cvs.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const cx=size/2,cy=size/2,R=size/2-52,n=criteria.length;
+  const ang=i=>-Math.PI/2+2*Math.PI*i/n;
+
+  for(let r=1;r<=5;r++){
+    ctx.beginPath();
+    for(let i=0;i<n;i++){
+      const a=ang(i),rr=R*r/5;
+      const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;
+      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+    }
+    ctx.closePath();ctx.strokeStyle='#e0e7eb';ctx.stroke();
+  }
+  ctx.font='11px Tahoma,Arial,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  criteria.forEach((c,i)=>{
+    const a=ang(i);
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);
+    ctx.strokeStyle='#d3dce1';ctx.stroke();
+    ctx.fillStyle='#5d7180';
+    ctx.fillText(c[appState.lang].short,cx+Math.cos(a)*(R+28),cy+Math.sin(a)*(R+28));
+  });
+
+  const vals=criteria.map(c=>scoresObj[c.id]);
+  ctx.beginPath();
+  vals.forEach((v,i)=>{
+    const a=ang(i),rr=R*(v/10);
+    const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;
+    i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+  });
+  ctx.closePath();
+  ctx.fillStyle=color==='orange'?'rgba(227,100,20,.18)':'rgba(15,76,92,.18)';
+  ctx.fill();
+  ctx.strokeStyle=color==='orange'?'#e36414':'#0f4c5c';
+  ctx.lineWidth=2;ctx.stroke();
+  vals.forEach((v,i)=>{
+    const a=ang(i),rr=R*(v/10);
+    ctx.beginPath();ctx.arc(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr,3.4,0,Math.PI*2);
+    ctx.fillStyle=color==='orange'?'#e36414':'#0f4c5c';ctx.fill();
+  });
+}
+
+/* ==================== 1. مستشار التوجيه ==================== */
+function renderAdvisorQuestions(){
+  const lang=appState.lang;
+  $('advisorQuestions').innerHTML=ADVISOR_QUESTIONS.map(item=>`
+    <div class="q-group">
+      <div class="q-title">${esc(item[lang])}</div>
+      <div class="chips" data-q="${item.q}">
+        ${item.opts.map(o=>`<button type="button" class="chip ${appState.advisor[item.q]===o.val?'selected':''}" data-val="${o.val}">${esc(o[lang])}</button>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderAdvisor(){
+  const lang=appState.lang, L=UI[lang];
+  const a=appState.advisor;
+  const scored=TRACKS.map(tr=>{
+    let pts=0;
+    if(tr.scale===a.scale) pts+=40;
+    if(tr.issue===a.issue) pts+=35;
+    if(tr.skill===a.skill) pts+=25;
+    return {...tr,pts:Math.min(98,Math.max(45,pts+20))};
+  }).sort((x,y)=>y.pts-x.pts).slice(0,3);
+
+  const methodTip=a.access==='field'?L.methodField:L.methodRemote;
+
+  $('advisorResults').innerHTML=scored.map((tr,idx)=>`
+    <div class="track-card">
+      <h3><span>${idx+1}. ${esc(tr[lang].title)}</span><span class="match">${L.matchLbl} ${tr.pts}%</span></h3>
+      <p>${esc(tr[lang].desc)}</p>
+      <div class="ex">${esc(tr[lang].ex)}</div>
+    </div>
+  `).join('')+`<div class="tip"><b>${L.methodTitle}</b> ${methodTip}</div>`;
+  updateConsult();
+}
+
+/* ==================== 2 و 3: قوائم التقييم والحساب ==================== */
+function buildSliders(containerId,criteria,scoresObj,groupKey){
+  const lang=appState.lang;
+  $(containerId).innerHTML=criteria.map((c,i)=>{
+    const s=scoresObj[c.id],b=band(s),item=c[lang];
+    return `<div class="crit">
+      <div class="crit-head">
+        <div><span class="num">${i+1}</span><span class="t">${esc(item.title)}</span></div>
+        <span class="val ${b.cls}">${s}/10</span>
+      </div>
+      <p class="desc">${esc(item.desc)}</p>
+      <input type="range" min="1" max="10" step="1" value="${s}" data-grp="${groupKey}" data-id="${c.id}">
+      <p class="anchor ${b.cls}">${b.lbl} ${esc(item.anchors[b.i])}</p>
+    </div>`;
+  }).join('');
+}
+
+function updateReadiness(){
+  const lang=appState.lang, L=UI[lang];
+  const vals=READINESS_CRIT.map(c=>appState.readiness[c.id]);
+  const total=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10);
+  $('rTotal').textContent=total;
+  $('rPillG').innerHTML=`${L.pillsR[0]}<b>${vals.filter(v=>v>=8).length}</b>`;
+  $('rPillM').innerHTML=`${L.pillsR[1]}<b>${vals.filter(v=>v>=4&&v<=7).length}</b>`;
+  $('rPillB').innerHTML=`${L.pillsR[2]}<b>${vals.filter(v=>v<=3).length}</b>`;
+
+  let v=lang==='ar'
+    ? {t:'جاهزية ممتازة للتسليم والتحكيم',c:'good',m:'ركّز الآن على المراجعة النهائية لتطابق اللوحات والتدرب على العرض الشفهي.'}
+    : {t:'Excellent Readiness for Jury & Submission',c:'good',m:'Focus on final drawing coordination and rehearsing your oral presentation.'};
+  if(total<55) v=lang==='ar'
+    ? {t:'مرحلة التأسيس — يحتاج جهدًا مكثفًا',c:'bad',m:'أكمل المتطلبات الأساسية للتحليل والبرنامج قبل الانتقال للتفاصيل.'}
+    : {t:'Early Stage — Needs Intensive Work',c:'bad',m:'Complete foundational site analysis and programming before moving to details.'};
+  else if(total<70) v=lang==='ar'
+    ? {t:'تقدّم جيد مع فجوات تحتاج استكمالًا',c:'warn',m:'أغلق البنود المتأخرة وفق خطة أسبوعية واضحة مع مشرفك.'}
+    : {t:'Good Progress with Gaps to Close',c:'warn',m:'Address delayed items through a structured weekly plan with your advisor.'};
+  else if(total<85) v=lang==='ar'
+    ? {t:'قريب من الجاهزية الكاملة',c:'mid',m:'ارفع مستوى البنود المتوسطة لتصل إلى إخراج متكامل.'}
+    : {t:'Near Full Readiness',c:'mid',m:'Elevate moderate items to achieve a cohesive, jury-ready package.'};
+
+  $('rVerdict').textContent=v.t;
+  $('rVerdict').className='verdict '+v.c;
+  $('rMsg').textContent=v.m;
+
+  const crit=READINESS_CRIT.filter(c=>appState.readiness[c.id]<=3);
+  $('rFlag').hidden=!crit.length;
+  if(crit.length) $('rFlag').textContent=L.rFlagPrefix+crit.map(c=>c[lang].title+' ('+appState.readiness[c.id]+'/10)').join(lang==='ar'?'، ':', ');
+
+  const weak=READINESS_CRIT.filter(c=>appState.readiness[c.id]<8).sort((a,b)=>appState.readiness[a.id]-appState.readiness[b.id]);
+  $('rTips').innerHTML=weak.length
+    ? weak.map(c=>`<div class="tip"><b>${esc(c[lang].title)} (${appState.readiness[c.id]}/10):</b> ${esc(c[lang].tip)}</div>`).join('')
+    : `<div class="tip ok">${L.rOk}</div>`;
+
+  drawRadar($('rRadar'),READINESS_CRIT,appState.readiness,'orange');
+  updateConsult();
+}
+
+function updateUrban(){
+  const lang=appState.lang, L=UI[lang];
+  const vals=URBAN_CRIT.map(c=>appState.urban[c.id]);
+  const total=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10);
+  $('uTotal').textContent=total;
+  $('uPillG').innerHTML=`${L.pillsU[0]}<b>${vals.filter(v=>v>=8).length}</b>`;
+  $('uPillM').innerHTML=`${L.pillsU[1]}<b>${vals.filter(v=>v>=4&&v<=7).length}</b>`;
+  $('uPillB').innerHTML=`${L.pillsU[2]}<b>${vals.filter(v=>v<=3).length}</b>`;
+
+  let v=lang==='ar'
+    ? {t:'بيئة عمرانية متوازنة وعالية الكفاءة',c:'good',m:'التدخلات المطلوبة تركز على الصيانة والتعزيز النوعي.'}
+    : {t:'Balanced & High-Performing Urban Environment',c:'good',m:'Interventions should focus on maintenance and targeted qualitative enhancements.'};
+  if(total<50) v=lang==='ar'
+    ? {t:'موقع ذو احتياج مرتفع للتأهيل والتدخل الشامل',c:'bad',m:'يمثل الموقع فرصة ممتازة لمشروع تجديد حضري أو إعادة تأهيل متكامل.'}
+    : {t:'High-Need Site Requiring Comprehensive Regeneration',c:'bad',m:'Represents a strong opportunity for an integrated urban regeneration project.'};
+  else if(total<70) v=lang==='ar'
+    ? {t:'موقع متوسط الكفاءة مع فجوات واضحة',c:'warn',m:'يحتاج الموقع إلى تدخلات موجهة في الحركة والمناخ والفراغات العامة.'}
+    : {t:'Moderate Performance with Clear Spatial Gaps',c:'warn',m:'Requires targeted interventions in walkability, microclimate, and public realm.'};
+  else if(total<85) v=lang==='ar'
+    ? {t:'موقع جيد قابل للارتقاء إلى نموذج أنسنة متكامل',c:'mid',m:'عالج نقاط الضعف المحددة لرفع جودة الحياة والراحة الحرارية.'}
+    : {t:'Good Site Ready for Holistic Humanization',c:'mid',m:'Address identified weak indicators to elevate livability and thermal comfort.'};
+
+  $('uVerdict').textContent=v.t;
+  $('uVerdict').className='verdict '+v.c;
+  $('uMsg').textContent=v.m;
+
+  const crit=URBAN_CRIT.filter(c=>appState.urban[c.id]<=3);
+  $('uFlag').hidden=!crit.length;
+  if(crit.length) $('uFlag').textContent=L.uFlagPrefix+crit.map(c=>c[lang].title+' ('+appState.urban[c.id]+'/10)').join(lang==='ar'?'، ':', ');
+
+  const weak=URBAN_CRIT.filter(c=>appState.urban[c.id]<8).sort((a,b)=>appState.urban[a.id]-appState.urban[b.id]);
+  $('uTips').innerHTML=weak.length
+    ? weak.map(c=>`<div class="tip"><b>${esc(c[lang].title)} (${appState.urban[c.id]}/10):</b> ${esc(c[lang].tip)}</div>`).join('')
+    : `<div class="tip ok">${L.uOk}</div>`;
+
+  drawRadar($('uRadar'),URBAN_CRIT,appState.urban,'teal');
+  updateConsult();
+}
+
+/* ==================== الملخصات والتصدير والمقترحات ==================== */
+function getActiveSummary(){
+  const lang=appState.lang, isAr=lang==='ar';
+  const header=[];
+  if(appState.student) header.push((isAr?'الطالب: ':'Student: ')+appState.student);
+  if(appState.title) header.push((isAr?'المشروع/الموقع: ':'Project/Site: ')+appState.title);
+  header.push((isAr?'التاريخ: ':'Date: ')+todayStr());
+
+  if(appState.tab==='advisor'){
+    const cards=[...$('advisorResults').querySelectorAll('.track-card h3 span:first-child')].map(el=>el.textContent);
+    return [isAr?'مسار التخرج (النسخة 1.1) — توصيات توجيه المسار':'Graduation Pathway (v1.1) — Track Recommendations',...header,'',isAr?'المسارات المقترحة:':'Recommended Tracks:',...cards].join('\n');
+  }
+  if(appState.tab==='readiness'){
+    const lines=[isAr?'مسار التخرج (النسخة 1.1) — تقييم جاهزية مشروع التخرج':'Graduation Pathway (v1.1) — Project Readiness Evaluation',...header,(isAr?'الإجمالي: ':'Total: ')+$('rTotal').textContent+'/100 — '+$('rVerdict').textContent,''];
+    READINESS_CRIT.forEach(c=>lines.push('• '+c[lang].title+': '+appState.readiness[c.id]+'/10'));
+    return lines.join('\n');
+  }
+  const lines=[isAr?'مسار التخرج (النسخة 1.1) — تشخيص الموقع / الحي الحضري':'Graduation Pathway (v1.1) — Site / Neighborhood Diagnosis',...header,(isAr?'الإجمالي: ':'Total: ')+$('uTotal').textContent+'/100 — '+$('uVerdict').textContent,''];
+  URBAN_CRIT.forEach(c=>lines.push('• '+c[lang].title+': '+appState.urban[c.id]+'/10'));
+  return lines.join('\n');
+}
+
+function updateConsult(){
+  const txt=getActiveSummary(), isAr=appState.lang==='ar';
+  const intro=isAr
+    ? 'السلام عليكم د. اعتزاز 🌷\nأشاركك نتيجتي من أداة «مسار التخرج»:\n\n'
+    : 'Hello Dr. Eatezaz,\nI am sharing my evaluation result from the Graduation Pathway toolkit:\n\n';
+  const subj=(isAr?'استشارة مسار التخرج':'Graduation Pathway Consultation')+(appState.title?' — '+appState.title:'');
+  $('waBtn').href='https://wa.me/971569758180?text='+encodeURIComponent(intro+txt);
+  $('mailBtn').href='mailto:emohammedani@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(txt);
+}
+
+$('sendSugMailBtn').addEventListener('click',e=>{
+  const isAr=appState.lang==='ar', L=UI[appState.lang];
+  const sug=appState.suggestion.trim();
+  if(!sug){e.preventDefault(); toast(L.sugEmpty); return;}
+  const subj=(isAr?'مقترح تطوير — أداة مسار التخرج (النسخة 1.1)':'Suggestion — Graduation Pathway Toolkit (v1.1)');
+  const body=[
+    (isAr?'النسخة: النسخة 1.1':'Version: Version 1.1'),
+    (isAr?'التاريخ: ':'Date: ')+todayStr(),
+    appState.student?((isAr?'المرسل / الطالب: ':'Sender / Student: ')+appState.student):'',
+    appState.title?((isAr?'المشروع / الموقع: ':'Project / Site: ')+appState.title):'',
+    '',
+    (isAr?'المقترح / الملاحظة:':'Suggestion / Feedback:'),
+    sug
+  ].filter(Boolean).join('\n');
+  $('sendSugMailBtn').href='mailto:emohammedani@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+});
+
+$('clearSugBtn').addEventListener('click',()=>{
+  appState.suggestion='';
+  $('suggestionText').value='';
+  save();
+  toast(UI[appState.lang].cleared);
+});
+
+function downloadHtmlReport(title, bodyHtml, fileSlug){
+  const lang=appState.lang, isAr=lang==='ar', L=UI[lang];
+  const metaHtml=isAr
+    ? `<p><b>النسخة:</b> النسخة 1.1 &nbsp;|&nbsp; <b>الطالب / المجموعة:</b> ${esc(appState.student||'غير محدد')} &nbsp;|&nbsp; <b>المشروع / الموقع:</b> ${esc(appState.title||'غير محدد')} &nbsp;|&nbsp; <b>التاريخ:</b> ${todayStr()}</p>`
+    : `<p><b>Version:</b> Version 1.1 &nbsp;|&nbsp; <b>Student / Group:</b> ${esc(appState.student||'Not specified')} &nbsp;|&nbsp; <b>Project / Site:</b> ${esc(appState.title||'Not specified')} &nbsp;|&nbsp; <b>Date:</b> ${todayStr()}</p>`;
+  const ftr=isAr
+    ? 'النسخة 1.1 — مسار التخرج: د. اعتزاز عبدالرحمن محمداني (أستاذ مساعد في العمارة وتخطيط المدن)'
+    : 'Version 1.1 — Graduation Pathway: Dr. Eatezaz Abdelrahman Mohammedani (Assistant Professor of Architecture & Urban Planning)';
+  const doc=`<!DOCTYPE html><html lang="${lang}" dir="${L.dir}"><head><meta charset="UTF-8"><title>${esc(title)}</title>
+  <style>
+    body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#23313a;line-height:1.7;max-width:820px;margin:24px auto;padding:0 18px}
+    .hdr{background:#0f4c5c;color:#fff;padding:18px 22px;border-radius:10px;margin-bottom:16px}
+    .hdr h1{margin:0 0 6px;font-size:1.3rem}
+    .hdr p{margin:0;font-size:.86rem;opacity:.9}
+    .box{border:1px solid #dde3e7;border-radius:10px;padding:14px 18px;margin-bottom:14px}
+    .box h2{margin:0 0 8px;font-size:1.02rem;color:#0f4c5c;border-inline-start:4px solid #e36414;padding-inline-start:8px}
+    table{width:100%;border-collapse:collapse;font-size:.88rem}
+    th,td{padding:8px 10px;border-bottom:1px solid #e4e9ec;text-align:start}
+    th{background:#f5f8fa;color:#526470}
+    .good{color:#2e7d32;font-weight:700} .mid{color:#b8860b;font-weight:700} .bad{color:#c62828;font-weight:700}
+    .tip{background:#fdf3ec;border-inline-start:3px solid #e36414;padding:8px 10px;border-radius:6px;margin-bottom:6px;font-size:.86rem}
+    .track-card{background:#f7fafb;border:1px solid #dde3e7;border-inline-start:4px solid #e36414;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+    .ftr{text-align:center;color:#6b7d88;font-size:.8rem;margin-top:20px;border-top:1px solid #e4e9ec;padding-top:12px}
+  </style></head><body>
+  <div class="hdr"><h1>${esc(title)}</h1>${metaHtml}</div>
+  ${bodyHtml}
+  <div class="ftr">${ftr}</div>
+  </body></html>`;
+  const blob=new Blob([doc],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=fileSlug+'.html';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  toast(L.downloaded);
+}
+
+/* ==================== الأحداث والتشغيل ==================== */
+function setTab(tabName){
+  appState.tab=tabName;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tabName));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='panel-'+tabName));
+  if(tabName==='readiness') drawRadar($('rRadar'),READINESS_CRIT,appState.readiness,'orange');
+  if(tabName==='urban') drawRadar($('uRadar'),URBAN_CRIT,appState.urban,'teal');
+  updateConsult(); save();
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>setTab(btn.dataset.tab)));
+document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  appState.lang=btn.dataset.lang;
+  applyLanguage(); save();
+}));
+
+document.addEventListener('click',e=>{
+  const chip=e.target.closest('.chip');
+  if(chip){
+    const q=chip.closest('.chips').dataset.q;
+    appState.advisor[q]=chip.dataset.val;
+    renderAdvisorQuestions();
+    renderAdvisor(); save();
+  }
+});
+
+document.addEventListener('input',e=>{
+  if(e.target.id==='studentName'){appState.student=e.target.value; updateConsult(); save();}
+  else if(e.target.id==='projectTitle'){appState.title=e.target.value; updateConsult(); save();}
+  else if(e.target.id==='suggestionText'){appState.suggestion=e.target.value; save();}
+  else if(e.target.type==='range'&&e.target.dataset.grp){
+    const grp=e.target.dataset.grp, id=e.target.dataset.id, v=+e.target.value;
+    appState[grp][id]=v;
+    const row=e.target.closest('.crit');
+    const b=band(v);
+    const valEl=row.querySelector('.val');
+    valEl.textContent=v+'/10'; valEl.className='val '+b.cls;
+    const critObj=(grp==='readiness'?READINESS_CRIT:URBAN_CRIT).find(x=>x.id===id);
+    const ancEl=row.querySelector('.anchor');
+    ancEl.className='anchor '+b.cls;
+    ancEl.textContent=b.lbl+' '+critObj[appState.lang].anchors[b.i];
+    if(grp==='readiness') updateReadiness(); else updateUrban();
+    save();
+  }
+});
+
+function copyText(txt){
+  const L=UI[appState.lang];
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(()=>toast(L.copied)).catch(()=>toast(L.copyErr));
+  } else toast(L.copyErr);
+}
+
+$('copyAdvisorBtn').addEventListener('click',()=>copyText(getActiveSummary()));
+$('copyReadinessBtn').addEventListener('click',()=>copyText(getActiveSummary()));
+$('copyUrbanBtn').addEventListener('click',()=>copyText(getActiveSummary()));
+
+$('expAdvisorBtn').addEventListener('click',()=>{
+  const isAr=appState.lang==='ar';
+  const html=`<div class="box"><h2>${isAr?'المسارات البحثية والتصميمية المقترحة':'Recommended Pathways'}</h2>${$('advisorResults').innerHTML}</div>`;
+  downloadHtmlReport(isAr?'تقرير مستشار توجيه مسار مشروع التخرج':'Graduation Track Advisor Report',html,isAr?'توجيه-مسار-التخرج':'graduation-track-plan');
+});
+
+$('expReadinessBtn').addEventListener('click',()=>{
+  const lang=appState.lang, isAr=lang==='ar';
+  const img=$('rRadar').toDataURL('image/png');
+  const rows=READINESS_CRIT.map((c,i)=>{
+    const s=appState.readiness[c.id],b=band(s),item=c[lang];
+    return `<tr><td>${i+1}. ${esc(item.title)}</td><td class="${b.cls}">${s}/10</td><td>${esc(item.anchors[b.i])}</td></tr>`;
+  }).join('');
+  const html=`
+    <div class="box"><h2>${isAr?'النتيجة العامة':'Overall Result'}</h2>
+      <p><b>${isAr?'مؤشر الجاهزية:':'Readiness Score:'}</b> ${$('rTotal').textContent}/100 — <b>${esc($('rVerdict').textContent)}</b></p>
+      <p>${esc($('rMsg').textContent)}</p>
+      <div style="text-align:center"><img src="${img}" style="max-width:290px"></div>
+    </div>
+    <div class="box"><h2>${isAr?'تفصيل محاور الجاهزية':'Readiness Breakdown'}</h2>
+      <table><thead><tr><th>${isAr?'المحور':'Dimension'}</th><th>${isAr?'الدرجة':'Score'}</th><th>${isAr?'الحالة الحالية':'Status'}</th></tr></thead><tbody>${rows}</tbody></table>
+    </div>
+    <div class="box"><h2>${isAr?'أولويات العمل قبل التسليم':'Action Priorities'}</h2>${$('rTips').innerHTML}</div>`;
+  downloadHtmlReport(isAr?'تقرير تقييم جاهزية مشروع التخرج':'Project Readiness Evaluation Report',html,isAr?'تقرير-جاهزية-المشروع':'project-readiness-report');
+});
+
+$('expUrbanBtn').addEventListener('click',()=>{
+  const lang=appState.lang, isAr=lang==='ar';
+  const img=$('uRadar').toDataURL('image/png');
+  const rows=URBAN_CRIT.map((c,i)=>{
+    const s=appState.urban[c.id],b=band(s),item=c[lang];
+    return `<tr><td>${i+1}. ${esc(item.title)}</td><td class="${b.cls}">${s}/10</td><td>${esc(item.anchors[b.i])}</td></tr>`;
+  }).join('');
+  const html=`
+    <div class="box"><h2>${isAr?'ملخص التشخيص الحضري':'Urban Diagnosis Summary'}</h2>
+      <p><b>${isAr?'مؤشر كفاءة الموقع:':'Site Performance Score:'}</b> ${$('uTotal').textContent}/100 — <b>${esc($('uVerdict').textContent)}</b></p>
+      <p>${esc($('uMsg').textContent)}</p>
+      <div style="text-align:center"><img src="${img}" style="max-width:290px"></div>
+    </div>
+    <div class="box"><h2>${isAr?'تفصيل المؤشرات العمرانية':'Urban Indicators Breakdown'}</h2>
+      <table><thead><tr><th>${isAr?'المؤشر':'Indicator'}</th><th>${isAr?'الدرجة':'Score'}</th><th>${isAr?'التوصيف':'Assessment'}</th></tr></thead><tbody>${rows}</tbody></table>
+    </div>
+    <div class="box"><h2>${isAr?'التدخلات الحضرية والمعمارية المقترحة':'Recommended Interventions'}</h2>${$('uTips').innerHTML}</div>`;
+  downloadHtmlReport(isAr?'تقرير تشخيص الحي والموقع الحضري':'Neighborhood & Site Diagnosis Report',html,isAr?'تقرير-تشخيص-الموقع':'site-diagnosis-report');
+});
+
+window.addEventListener('resize',()=>{
+  clearTimeout(window.__rt);
+  window.__rt=setTimeout(()=>{
+    if(appState.tab==='readiness') drawRadar($('rRadar'),READINESS_CRIT,appState.readiness,'orange');
+    if(appState.tab==='urban') drawRadar($('uRadar'),URBAN_CRIT,appState.urban,'teal');
+  },150);
+});
+
+
+function resetDefaults(){
+  appState.student='';
+  appState.title='';
+  appState.suggestion='';
+  appState.advisor={scale:'building',issue:'climate',skill:'form',access:'field'};
+  READINESS_CRIT.forEach(c=>appState.readiness[c.id]=6);
+  URBAN_CRIT.forEach(c=>appState.urban[c.id]=5);
+  $('studentName').value='';
+  $('projectTitle').value='';
+  $('suggestionText').value='';
+  applyLanguage();
+  save();
+}
+
+$('resetBtn').addEventListener('click',()=>{
+  resetDefaults();
+  toast(UI[appState.lang].resetDone);
+});
+
+$('presetBtn').addEventListener('click',()=>{
+  const isAr=appState.lang==='ar';
+  appState.student=isAr?'فريق التخرج — مشروع حي سكني مستدام':'Graduation Team — Sustainable District Studio';
+  appState.title=isAr?'أنسنة حي سكني وتأهيل الفراغات العامة':'Neighborhood Humanization & Public Realm';
+  appState.advisor={scale:'urban',issue:'human',skill:'social',access:'field'};
+  appState.readiness={
+    r_prob:8, r_lit:7, r_site:8, r_prog:7,
+    r_conc:7, r_plans:6, r_tech:6, r_pres:7
+  };
+  appState.urban={
+    u_conn:7, u_walk:4, u_climate:3, u_mix:6,
+    u_public:4, u_ident:7, u_infra:5, u_resil:6
+  };
+  $('studentName').value=appState.student;
+  $('projectTitle').value=appState.title;
+  applyLanguage();
+  save();
+  toast(UI[appState.lang].presetLoaded);
+});
+
+load();
+$('studentName').value=appState.student;
+$('projectTitle').value=appState.title;
+$('suggestionText').value=appState.suggestion;
+$('yy').textContent=new Date().getFullYear();
+applyLanguage();
+setTab(appState.tab);
+</script>
+</body>
+</html>
